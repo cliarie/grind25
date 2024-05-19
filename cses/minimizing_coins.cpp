@@ -1,8 +1,27 @@
 #include <iostream>
 #include <vector>
 #define ll long long
-#define INT_MAX 1e9
 using namespace std;
+
+/*
+solve(0) = 0
+solve(1) = 1
+solve(2) = 2
+solve(3) = 1
+solve(4) = 1
+solve(5) = 2
+solve(6) = 2
+solve(7) = 2
+solve(8) = 2
+solve(9) = 3
+solve(10) = 3
+
+solve(x) = min(solve(x − 1) + 1, solve(x − 3) + 1, solve(x − 4) + 1)
+
+solve(x) = inf if x < 0
+solve(x) = 0 if x = 0
+solve(x) = min(solve(x-coins[i]) + 1) if x > 0
+*/
 
 int main()
 {
