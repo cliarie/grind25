@@ -20,7 +20,7 @@ int main()
     for (ll i = 0; i < n; i++)
         cin >> arr[i];
 
-    vector<vector<ll>> dp(n, vector<ll>(m + 2, 0)); // WHY m+2????
+    vector<vector<ll>> dp(n, vector<ll>(m + 2, 0));
 
     if (arr[0] == 0)
     {
