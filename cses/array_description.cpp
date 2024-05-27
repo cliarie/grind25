@@ -16,11 +16,11 @@ int main()
     ll n, m;
     cin >> n >> m;
 
-    ll arr[n];
+    int arr[n];
     for (ll i = 0; i < n; i++)
         cin >> arr[i];
 
-    vector<vector<ll>> dp(n, vector<ll>(m + 1, 0));
+    vector<vector<ll>> dp(n, vector<ll>(m + 2, 0)); // WHY m+2????
 
     if (arr[0] == 0)
     {
@@ -40,7 +40,7 @@ int main()
         else
             dp[i][arr[i]] = (dp[i - 1][arr[i] - 1] + dp[i - 1][arr[i]] + dp[i - 1][arr[i] + 1]) % mod;
     }
-    ll ans = 0;
+    int ans = 0;
     for (ll j = 1; j <= m; j++)
         ans = (ans + dp[n - 1][j]) % mod;
 

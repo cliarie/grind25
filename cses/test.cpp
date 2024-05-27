@@ -84,6 +84,6 @@ int main()
 
     // dp[][] array such that dp[i][j] stores the number of
     // arrays that have arr[i] = j
-    vector<vector<ll>> dp(N, vector<ll>(M + 2, 0));
+    vector<vector<ll>> dp(N, vector<ll>(M + 1, 0));
     cout << getans(arr, N, M, dp) << endl;
 }
