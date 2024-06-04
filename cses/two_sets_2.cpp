@@ -11,8 +11,8 @@ dp[i][j] = dp[i - 1][j] + dp[i - 1][j - i]
 */
 int main()
 {
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
     int n;
     cin >> n;
     int sum = n / 2 * (n + 1);
@@ -33,6 +33,7 @@ int main()
                     dp[i][j] = (dp[i][j] + dp[i - 1][j - i]) % MOD;
             }
         }
+
         cout << dp[n][sum] << endl;
     }
 }
