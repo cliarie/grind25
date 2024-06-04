@@ -16,8 +16,8 @@ using namespace std;
 int main()
 {
     // dp[i][j] = dp[i-1][j] + dp[i-1][j-i]
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
     int n;
     cin >> n;
     ll sum = (n * (n + 1)) / 2;
@@ -38,7 +38,7 @@ int main()
                     dp[i][j] = (dp[i][j] + dp[i - 1][j - i]) % MOD;
             }
         }
-        cout << dp[n - 1][sum] << endl;
-        cout << dp[n][sum] / 2 << endl;
+        cout << dp[n - 1][sum] << endl; // permanently put n in one of the sets to accommodate for the two sets
+        // cout << dp[n][sum] / 2 << endl; // divide by two to account for the two sets HOWEVER does not work since need modulo inverse ://
     }
 }
