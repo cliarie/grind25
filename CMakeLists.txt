@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.6)
 project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
@@ -18,3 +18,4 @@ add_executable(rectangle cses/rectangle_cutting.cpp)
 add_executable(money cses/money_sums.cpp)
 add_executable(removal cses/removal_game.cpp)
 add_executable(sets cses/two_sets_2.cpp)
+add_executable(subsequence cses/increasing_subsequence.cpp)
