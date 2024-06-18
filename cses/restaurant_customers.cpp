@@ -5,8 +5,8 @@ using namespace std;
 
 int main()
 {
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
 
     int n;
     cin >> n;
@@ -20,7 +20,7 @@ int main()
     sort(start.begin(), start.end());
     sort(end.begin(), end.end());
 
-    int a, b, count, maxcount;
+    int a = 0, b = 0, count = 0, maxcount = 0;
     while (a < n && b < n){
         if (start[a] < end[b]){
             count++;
