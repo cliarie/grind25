@@ -26,17 +26,23 @@ int main(){
 
     cout << count << endl;;
 
-    set<pair<int, int>> swap;
+    set<pair<int, int>> updatepairs;
     for (int i = 0; i < m; ++i){
         int a, b;
         cin >> a >> b;
 
-        temp = indices[arr[a]];
-        indices[arr[a]] = indices[arr[b]];
-        indices[arr[b]] = temp;
-        int count = 1;
-        for (int j = 2; j <= n; ++j){
-            if (indices[j] < indices[j - 1]) count++;
+        if (arr[a] + 1 <= n) updatepairs.insert({arr[a], arr[a] + 1});
+        if (arr[a] - 1 >= 1) updatepairs.insert({arr[a] - 1, arr[a]});
+        if (arr[b] + 1 <= n) updatepairs.insert({arr[b], arr[b] + 1});
+        if (arr[b] - 1 >= 1) updatepairs.insert({arr[b] - 1, arr[b]});
+
+        for (auto pair : updatepairs){
+            if (indices[pair.first] > indices[pair.second]) count--;
+        }
+        swap(arr[a], arr[b]);
+        swap(indices[arr[a]], indices[arr[b]]);
+        for (auto pair : updatepairs){
+            if (indices[pair.first] > indices[pair.second]) count++;
         }
         cout << count << endl;
     }
