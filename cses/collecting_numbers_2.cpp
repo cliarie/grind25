@@ -8,9 +8,9 @@ using namespace std;
 swap can only affect adjacent values
 */
 int main(){
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
-    int n, m, temp;
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
+    int n, m;
     cin >> n >> m;
     vector<int> arr(n + 1, 0);
     vector<int> indices(n + 1, 0);
@@ -24,10 +24,9 @@ int main(){
         if (indices[i] < indices[i - 1]) count++;
     }
 
-    cout << count << endl;;
-
-    set<pair<int, int>> updatepairs;
     for (int i = 0; i < m; ++i){
+        set<pair<int, int>> updatepairs;
+
         int a, b;
         cin >> a >> b;
 
