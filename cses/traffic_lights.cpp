@@ -3,30 +3,35 @@
 #include <vector>
 #include <set>
 #include <utility>
+#define ll long long
 using namespace std;
 
 int main(){
-    freopen("../input.txt", "r", stdin);
-    freopen("../output.txt", "w", stdout);
+    // freopen("../input.txt", "r", stdin);
+    // freopen("../output.txt", "w", stdout);
 
     int x, n;
     cin >> x >> n;
-    vector<int> arr(n, 0);
+    vector<ll> arr(n, 0);
     for (int i = 0; i < n; ++i) cin >> arr[i];
 
-    multiset<int> lengths;
-    set<pair<int, int>> ranges;
+    multiset<ll> lengths;
+    set<pair<ll, ll>> ranges;
     lengths.insert(x);
-    ranges.insert(make_pair(1, x));
+    ranges.insert({1, x});
     for (int i = 0; i < n; ++i){
-        auto range = lower_bound(ranges.begin(), ranges.end(), make_pair(arr[i], arr[i]));
-        cout << "light " << arr[i] << endl;
-        cout << range->first << " " << range->second << endl;
-        lengths.erase(range->second - range->first + 1);
-        lengths.insert(range->second - arr[i] + 1);
-        lengths.insert(arr[i] = range->first + 1);
-        ranges.insert(make_pair(range->first, arr[i]));
-        ranges.insert(make_pair(arr[i] + 1, range->second));
+        auto range = ranges.upper_bound({arr[i], x});
+        //for (auto i : ranges) cout  << i.first << " " << i.second << endl;
+        range--;
+        lengths.erase(lengths.find(range->second - range->first + 1));
+        lengths.insert(range->second - arr[i]);
+        lengths.insert(arr[i] - range->first + 1);
+        ranges.insert({range->first, arr[i]});
+        ranges.insert({arr[i] + 1, range->second});
+
+        ranges.erase(range);
+ //for (auto i : ranges) cout  << i.first << " dd " << i.second << endl;
+ //for (auto i : lengths) cout  << "ll" << i << endl;
+        cout << *lengths.rbegin() << " ";
     }
-    for (auto l : lengths) cout << l << endl;
 }
