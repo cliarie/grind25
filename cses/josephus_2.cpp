@@ -1,14 +1,17 @@
 #include <iostream>
-#include <unordered_set>
+#include <set>
 #define ll long long
 using namespace std;
 
+/*
+TLE
+*/
 int main(){
-    // freopen("../input.txt", "r", stdin);
-    // freopen("../output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
 
     int n, k; cin >> n >> k;
-    unordered_set<int> children;
+    set<int> children;
     for (int i = 1; i <= n; ++i) children.insert(i);
 
     ll i = 0;
