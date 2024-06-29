@@ -1,5 +1,5 @@
 #include <iostream>
-#include <set>
+#include <unordered_set>
 #define ll long long
 using namespace std;
 
@@ -8,7 +8,7 @@ int main(){
     // freopen("../output.txt", "w", stdout);
 
     int n, k; cin >> n >> k;
-    set<int> children;
+    unordered_set<int> children;
     for (int i = 1; i <= n; ++i) children.insert(i);
 
     ll i = 0;
