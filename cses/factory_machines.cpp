@@ -14,8 +14,8 @@ bool check(ll mid, ll n, ll t, vector<ll>& arr){
     return false;
 }
 int main(){
-    // freopen("../input.txt", "r", stdin);
-    // freopen("../output.txt", "w", stdout);
+    freopen("../input.txt", "r", stdin);
+    freopen("../output.txt", "w", stdout);
 
     ll n, t; cin >> n >> t;
     vector<ll> arr(n, 0);
