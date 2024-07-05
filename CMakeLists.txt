@@ -3,4 +3,4 @@ project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(subarraydiv cses/subarray_divisibility.cpp)
+add_executable(counting cses/counting_rooms.cpp)
