@@ -8,7 +8,6 @@ using namespace std;
 map prefix sum to freq:
 prefix[0...i] : 3 -> P : 3
 prefix[0...j] : 2 -> P - x : 2
-ans += min(2, 3)
 P - (P - X) = X -> subarray [i, j] counts
 */
 int main(){

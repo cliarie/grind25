@@ -3,4 +3,4 @@ project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(subarraysum2 cses/subarray_sums_2.cpp)
+add_executable(subarraydiv cses/subarray_divisibility.cpp)
