@@ -3,4 +3,4 @@ project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(distinct cses/subarray_distinct_values.cpp)
+add_executable(div cses/array_division.cpp)
