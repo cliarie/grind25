@@ -21,7 +21,7 @@ int main(){
 
     multiset<int> smaller;
     multiset<int> larger;
-    int ssum = 0, lsum = 0;
+    ll ssum = 0, lsum = 0;
     for (int i = 0; i < n; ++i){
         if (smaller.size() > larger.size()) {
             larger.insert(arr[i]);
@@ -50,7 +50,7 @@ int main(){
             // for (auto i : larger) cout << i << " ";
             // cout << endl;
             // cout << "DEL " << arr[i - k + 1] << endl;
-            int cost = med * smaller.size() - med * larger.size() - ssum + lsum;
+            ll cost = med * smaller.size() - med * larger.size() - ssum + lsum;
             cout << cost << endl;
             if (smaller.find(arr[i - k + 1]) != smaller.end()) {
                 smaller.erase(smaller.find(arr[i - k + 1]));
