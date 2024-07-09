@@ -3,4 +3,4 @@ project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(l cses/labyrinth.cpp)
+add_executable(roads cses/building_roads.cpp)
