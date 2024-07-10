@@ -3,4 +3,4 @@ project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(message cses/message_route.cpp)
+add_executable(time cses/time_travel.cpp)
