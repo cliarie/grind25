@@ -3,4 +3,4 @@ project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(time cses/time_travel.cpp)
+add_executable(subordinates cses/subordinates.cpp)
