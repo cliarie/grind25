@@ -3,4 +3,4 @@ project(grind25)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(subordinates cses/subordinates.cpp)
+add_executable(tree cses/tree_matching.cpp)
