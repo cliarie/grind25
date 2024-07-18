@@ -1,4 +1,5 @@
 #include <vector>
+#include <iostream>
 using namespace std;
 
 class Solution
@@ -20,7 +21,7 @@ public:
             // for each item, decide whether or not to buy item i: will cost[i], but will give you free[i] + 1 (what you bought)
             // populate all possibilities for this decision for all items before moving on to make a decision for another item
             for (int j = n; j >= 0; --j)
-            {   // reverse order or messes up don't buy option
+            { // reverse order or messes up don't buy option
                 // for (int j = 0; j <= n; ++j){ // in order messes up not buying choice
                 if ((j - free[i] - 1) >= 0)
                     dp[j] = min(dp[j], dp[j - free[i] - 1] + cost[i]);
