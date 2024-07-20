@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 option(LOCAL_TESTING "Enable local testing with freopen" ON)
 
-set(SOURCE_FILE "../cses/round_trip.cpp")
+set(SOURCE_FILE "../misc/angry-frogs.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 
