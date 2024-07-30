@@ -23,6 +23,7 @@ public:
             cur = cur->child[i];
         }
         cur->isEnd = true;
+
     }
     
     bool search(string word) {

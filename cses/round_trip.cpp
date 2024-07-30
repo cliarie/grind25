@@ -6,12 +6,12 @@
 using namespace std;
 
 int dfs(vector<vector<int>> &adj, vector<int> &visited, int cur){
-    for (auto &n : adj[cur]){
+    for (auto &n : adj[cur]) {
         if (visited[n] && visited[cur] != n) {
             visited[n] = cur;
             return n;
         }
-        if (visited[n] == 0){
+        if (visited[n] == 0) {
             visited[n] = cur;
             dfs(adj, visited, n);
         }
