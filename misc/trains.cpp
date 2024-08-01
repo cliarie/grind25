@@ -108,7 +108,6 @@ int trainSchedule(vector<int> arrivalStations, vector<int> arrivalTimes, vector<
             late_count++;
         }
     }
-
     return late_count;
 }
 
