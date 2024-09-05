@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 option(LOCAL_TESTING "Enable local testing with freopen" ON)
 
-set(SOURCE_FILE "../491/smartphone.cpp")
+set(SOURCE_FILE "../491/teaming.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 
