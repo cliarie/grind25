@@ -34,10 +34,30 @@ int part2(vector<int> &prices, int k){ // set at most k price points
     return dp[n][k];
 }
 
+
 int part3(vector<int> &prices, int k, int l){ // set at most k price points, and sell at most l items
     vector<int> prices2(prices.end() - l, prices.end());
     int n = prices2.size();
     return part2(prices2, k);
+}
+
+// {3 2 1 12 11 10 101 100 102}
+int part4(vector<int> &prices, int k, int l){
+    int n = prices.size();
+    vector<vector<vector<int> > > dp(n + 1, vector<vector<int> >(k + 1, vector<int>(l + 1, 0)));
+    for (int i = 1; i <= n; ++i){
+        for (int j = 1; j <= k; ++j){
+            for (int m = 1; m <= l; ++m){
+                dp[i][j][m] = dp[i - 1][j][m];
+                int curmin = prices[i - 1];
+                for (int l = i - 1; l >= 0; --l){
+                    curmin = min(curmin, prices[l]);
+                    dp[i][j][m] = max(dp[i][j][m], dp[l][j - 1][m - 1] + (i - l) * curmin);
+                }
+            }
+        }
+    }
+    return dp[n][k][l];
 }
 
 // sort arr, then split arr into n subarrays such that smallest number in subarray * subarray length is maximized
@@ -50,10 +70,11 @@ int main(){
     int n, k, l; cin >> n >> k >> l;
     vector<int> prices(n, 0);
     for (auto &i : prices) cin >> i;
-    sort(prices.begin(), prices.end());
+    // sort(prices.begin(), prices.end());
 
     cout << part1(prices) << endl;
     cout << part2(prices, k) << endl;
     cout << part3(prices, k, l) << endl;
+    cout << part4(prices, k, l) << endl;
 
 }

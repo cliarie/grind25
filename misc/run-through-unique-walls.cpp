@@ -1,75 +1,70 @@
 #include <iostream>
 #include <vector>
-#include <map>
 using namespace std;
 
-double findDist(const vector<pair<double, int> > &points, int l, int r){
-    double ans = 0;
-    for (int i = l ; i <= r; ++i){
-        ans += points[i].second;
-        if (i != l) {
-            int tt, tn;
-            if (points[i].first > 0) tt = ceil(points[i].first);
-            else tt = floor(points[i].first);
-            if (points[i - 1].first > 0) tn = ceil(points[i - 1].first);
-            else tn = floor(points[i - 1].first);
-            ans += tt - tn;
-        }
-    }
-    return ans;
-}
-
-int numDistinctWalls(const vector<double> &coords, const vector<int> &thicknesses, int energy){
-    // n^2 [-1.5, 0.5, 1.5, 5.5]
-    vector<pair<double, int> > points;
+int maxWallsPassed(const vector<double>& coords, const vector<int> &thicknesses, int E){
     int n = coords.size();
+
+    vector<pair<double, int>> rightWalls, leftWalls;
+
     for (int i = 0; i < n; ++i){
-        points.push_back({coords[i], thicknesses[i]});
+        if (coords[i] >= 0.5) rightWalls.push_back({coords[i], thicknesses[i]});
+        else leftWalls.push_back({coords[i], thicknesses[i]});
     }
-    points.push_back({0, 0});
-    sort(points.begin(), points.end());
+    sort(rightWalls.begin(), rightWalls.end());
+    sort(leftWalls.begin(), leftWalls.end(), [](const pair<double, int> &a, const pair<double, int> &b){
+        return a.first > b.first;
+    });
 
-    auto it = find_if(points.begin(), points.end(), [](const auto &p) {return p.first == 0.0;});
-    int r = it-points.begin() + 1;
-    int l = it-points.begin() - 1;
-    int cur = it-points.begin();
-    int ans = 0;
-    while(l >= 0 || r < n){
-        cout << l << " " << cur << " " << r << endl;
-        int ld = -1, rd = -1;
-        if (l >= 0) ld = findDist(points, l, cur);
-        if (r < n) rd = findDist(points, cur, r);
-        cout << ld << " " << rd << endl;
-        if (ld != -1 && rd != -1 && ld < rd || rd == -1){
-            cur = l;
-            l--;
-            energy -= ld;
-        }
-        else{
-            cur = r;
-            r++;
-            energy -= rd;
-        }
-        if (energy >= 0) ans++;
+    int curpos = 0;
+    int curcost = 0;
+    vector<int> rightPrefixSum(rightWalls.size()), leftPrefixSum(leftWalls.size());
+
+    for (int i = 0; i < rightWalls.size(); ++i){
+        rightPrefixSum[i] = rightWalls[i].second + floor(rightWalls[i].first) - curpos;
+        if (i > 0) rightPrefixSum[i] += rightPrefixSum[i - 1];
+        curpos = ceil(rightWalls[i].first);
     }
 
-    return ans;
+    for (int i = 0; i < leftWalls.size(); ++i){
+        leftPrefixSum[i] = leftWalls[i].second + curpos - ceil(leftWalls[i].first);
+        if (i > 0) leftPrefixSum[i] += leftPrefixSum[i - 1];
+        curpos = floor(leftWalls[i].first);
+    }
+
+    int maxWalls = 0;
+
+    for (int i = 0; i < rightPrefixSum.size(); ++i){
+        if (rightPrefixSum[i] <= E){
+            maxWalls = max(maxWalls, i + 1);
+        }
+        else break;
+    }
+
+    for (int i = 0; i < leftPrefixSum.size(); ++i){
+        if (leftPrefixSum[i] <= E){
+            maxWalls = max(maxWalls, i + 1);
+        }
+        else break;
+    }
+
+    for (int i = 0; i < rightPrefixSum.size(); ++i){
+        for (int j = 0; j < leftPrefixSum.size(); ++j){
+            int movementCost = abs(floor(rightWalls[i].first) - ceil(leftWalls[j].first));
+            int totalCost = rightPrefixSum[i] + leftPrefixSum[j] + movementCost;
+            if (totalCost <= E){
+                int walls = (i + 1) + (j + 1);
+                maxWalls = max(maxWalls, walls);
+            }
+            else break;
+        }
+    }
+
+    return maxWalls;
 
 }
-
-
 int main(){
-    #ifdef LOCAL_TESTING
-        freopen("../input.txt", "r", stdin);
-        freopen("../output.txt", "w", stdout);
-    #endif
-    int n, e;
-    cin >> n >> e;
-    vector<double> coords(n);
-    vector<int> thicknesses(n);
-    for (int i = 0; i < n; ++i){
-        cin >> coords[i] >> thicknesses[i];
-    };
-
-    cout << numDistinctWalls(coords, thicknesses, e) << endl;
+    vector<double> coords = {0.5, 3.5};
+    vector<int> thickness = {2, 2};
+    cout << maxWallsPassed(coords, thickness, 6) << endl;
 }
