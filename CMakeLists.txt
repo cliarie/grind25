@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 option(LOCAL_TESTING "Enable local testing with freopen" ON)
 
-set(SOURCE_FILE "../misc/run-through-unique-walls.cpp")
+set(SOURCE_FILE "../491/password-reconstruction.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 
