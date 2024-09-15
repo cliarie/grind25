@@ -3,3 +3,5 @@ build
 .cache
 input.txt
 output.txt
+.*
+!.gitignore
