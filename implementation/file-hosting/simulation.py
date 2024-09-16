@@ -18,4 +18,5 @@ def simulate_coding_framework(list_of_lists):
     Parameters:
     list_of_lists (List[List[str]]): A list of lists containing strings.
     """
+
     pass
