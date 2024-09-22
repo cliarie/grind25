@@ -5,10 +5,11 @@ set(CMAKE_CXX_STANDARD 17)
 
 option(LOCAL_TESTING "Enable local testing with freopen" ON)
 
-set(SOURCE_FILE "../491/communicating-between-mountains.cpp")
+set(SOURCE_FILE "../misc/fraud-detection.cpp")
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILE})
 
 if (LOCAL_TESTING)
     target_compile_definitions(${PROJECT_NAME} PRIVATE LOCAL_TESTING)
 endif()
+
