@@ -103,7 +103,6 @@ int tin[MAXN], tout[MAXN], timer;
 int up[MAXN][MAXLOG];  // Binary lifting table
 
 void dfs(int u, int p){
-    // tin[u] = ++timer;
     up[u][0] = p;
     depth[u] = depth[p] + 1;
     for (int i = 1; i < MAXLOG; ++i){
@@ -114,13 +113,7 @@ void dfs(int u, int p){
             dfs(v, u);
         }
     }
-    // tout[u] = ++timer;
 }
-
-// bool is_ancestor(int u, int v) {
-//     // true if u is ancestor of v
-//     return tin[u] <= tin[v] && tout[u] >= tout[v];
-// }
 
 int lca(int u, int v){
     if (depth[u] < depth[v]) swap(u, v);
@@ -141,15 +134,6 @@ int lca(int u, int v){
         }
     }
     return up[u][0];
-    // cout << u << v << "UV" << endl;
-    // if (is_ancestor(u, v)) return u;
-    // if (is_ancestor(v, u)) return v;
-    // cout <<"??" << endl;
-    // for (int i = MAXLOG - 1; i >= 0; --i){
-    //     if (up[u][i] != 0 && !is_ancestor(up[u][i], v))
-    //         u = up[u][i];
-    // }
-    // return up[u][0];
 }
 
 int main(){
@@ -183,13 +167,11 @@ int main(){
             adj[a].push_back(b);
             adj[b].push_back(a);
 
-            // tin[b] = ++timer;
             depth[b] = depth[a] + 1;
             up[b][0] = a;
             for (int k = 1; k < MAXLOG; ++k){
                 up[b][k] = up[up[b][k - 1]][k - 1];
             }
-            // tout[b] = ++timer;
         }
         else{
             // Query distance between nodes a and b
