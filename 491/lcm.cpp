@@ -95,10 +95,10 @@ ll minimal_lcm(ll a, ll b){
 }
 
 int main(){
-        #ifdef LOCAL_TESTING
-           freopen("../input.txt", "r", stdin);
-           freopen("../output.txt", "w", stdout);
-        #endif
+    #ifdef LOCAL_TESTING
+        freopen("../input.txt", "r", stdin);
+        freopen("../output.txt", "w", stdout);
+    #endif
 
     int t;
     cin >> t;
