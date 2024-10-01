@@ -1,24 +1,20 @@
 #include <iostream>
 using namespace std;
-class Solution
-{
+class Solution {
 public:
-    int firstMissingPositive(vector<int> &nums)
-    {
-        for (int i = 0; i < nums.size(); ++i)
-        {
-            while ((nums[i] > 0 && nums[i] < nums.size()) && (nums[i] != nums[nums[i] - 1]))
-            {
-                swap(nums[nums[i] - 1], nums[i]);
+    int firstMissingPositive(vector<int>& nums) {
+        // smallest positive must be between 1 to n or else n + 1
+        int n = nums.size();
+        for (int i = 0; i < n; ++i){
+            while(nums[i] < n && nums[i] >= 0 && nums[i] != i && nums[i] != nums[nums[i]]){
+                swap(nums[i], nums[nums[i]]);
             }
         }
-        for (int i = 0; i < nums.size(); ++i)
-        {
-            if (nums[i] != i + 1)
-            {
-                return i + 1;
-            }
+
+        for (int i = 1; i < n; ++i){
+            if (nums[i] != i) return i;
         }
-        return nums.size() + 1;
+        if (nums[0] != n) return n;
+        return n + 1;
     }
 };
