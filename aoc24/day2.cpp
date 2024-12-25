@@ -54,7 +54,6 @@ int part2(vector<vector<int>> &a){
                 }
                     diff = v[index - 1] - v[index - 2]; // typo but it works?
                     if (dir ? (diff >= 1 && diff <= 3) : (diff <= -1 && diff >= -3)) sum++;
-                }
             }
         }
     }
