@@ -43,7 +43,6 @@ int main(){
     else x += (d / 2) * a[i];
     if (d%2 != 0) c = !c;
     n -= d * a[i];
-    cout << "DXN: " << d << " " << x << " " << n << " " << c << endl;
   }
 
   cout << x << endl;
