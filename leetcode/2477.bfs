@@ -1,0 +1,42 @@
+typedef long long ll;
+class Solution {
+public:
+    long long minimumFuelCost(vector<vector<int>>& roads, int seats) {
+        int n = roads.size();
+        vector<vector<int>> adj(n + 1);
+        vector<int> deg(n+1);
+        for (auto &v : roads){
+            adj[v[0]].push_back(v[1]);
+            adj[v[1]].push_back(v[0]);
+            deg[v[0]]++;
+            deg[v[1]]++;
+        }
+        queue<int> q;
+        for (int i = 0; i < n + 1; ++i){
+            if (deg[i] == 1 && i != 0) {deg[i]--; q.push(i);}
+        }
+
+        vector<ll> ppl(n + 1, 1); ppl[0] = 0;
+        vector<ll> distance(n + 1, 0);
+        while (!q.empty()){
+            ll cur = q.front();
+            q.pop();
+            for (int i : adj[cur]) deg[i]--;
+            // cout << cur << " " << ppl[cur] << " " << distance[cur] << endl;
+            if (cur == 0) break;
+            for (int i : adj[cur]){
+                ppl[i] += ppl[cur];
+                distance[i] += distance[cur] + max((ll)1,(ppl[cur] + seats - 1)/seats);
+                // cout << "DISTANCE " << i << " " << distance[i] << endl;
+                if (i != 0 && deg[i] == 1 || deg[i] == 0 && i == 0){
+                    // cout << "CUR PUSHED " << cur << " " << i << endl;
+                    q.push(i);
+                    // cout << "PPL " << i << " " << ppl[i] << endl;
+                    //distance[i] = distance[cur] + 1;
+                }
+            }
+        }
+
+        return distance[0];
+    }
+};
